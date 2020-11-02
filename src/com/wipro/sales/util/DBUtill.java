@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DBUtill {
 	
-	public static Connection getConnection() {
+	public static Connection getDBConnection() {
 		
 		Connection con = null;
 		
