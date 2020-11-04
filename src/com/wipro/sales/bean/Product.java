@@ -4,6 +4,19 @@ public class Product {
 	
 	String productID, productName;
 	int quantityOnHand, reorderLevel;
+	double productUnitPrice;
+	/**
+	 * @return the productUnitPrice
+	 */
+	public double getProductUnitPrice() {
+		return productUnitPrice;
+	}
+	/**
+	 * @param productUnitPrice the productUnitPrice to set
+	 */
+	public void setProductUnitPrice(double productUnitPrice) {
+		this.productUnitPrice = productUnitPrice;
+	}
 	/**
 	 * @return the productID
 	 */

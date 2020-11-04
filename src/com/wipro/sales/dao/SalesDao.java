@@ -9,7 +9,7 @@ import com.wipro.sales.bean.SalesReport;
 
 public class SalesDao {
 	
-	Connection conn = DBUtill.getDBConnection();
+	Connection conn = DBUtil.getDBConnection();
 	int insertSales(Sales sales) {
 		
 		//get values to be inserted
