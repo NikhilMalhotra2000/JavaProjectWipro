@@ -9,8 +9,8 @@ import com.wipro.sales.bean.SalesReport;
 
 public class SalesDao {
 	
-	Connection conn = DBUtil.getDBConnection();
-	int insertSales(Sales sales) {
+	static Connection conn = DBUtil.getDBConnection();
+	public static int insertSales(Sales sales) {
 		
 		//get values to be inserted
 		String SalesID = sales.getSalesID();
@@ -18,7 +18,7 @@ public class SalesDao {
 		String ProductId = sales.getProductID();
 		int QuantitySold = sales.getQuantitySold();
 		double salesPricePerUnit = sales.getSalesPricePerUnit();
-		
+	
 		
 		//get connection from DBUtill.java
 		try {
@@ -36,7 +36,7 @@ public class SalesDao {
 		}
 	}
 	
-	String generateSalesID(java.util.Date salesDate) {
+	public static String generateSalesID(java.util.Date salesDate) {
 		
 		PreparedStatement ps;
 		try {
@@ -58,7 +58,7 @@ public class SalesDao {
 		return "";	
 	}
 	
-	ArrayList<SalesReport> getSalesReport(){
+	public static ArrayList<SalesReport> getSalesReport(){
 		
 		ArrayList<SalesReport> list = new ArrayList<SalesReport>();
 		
@@ -83,8 +83,7 @@ public class SalesDao {
 			e.printStackTrace();
 		}
 		
-		return list;
-		
+		return list;	
 	}
 	
 }

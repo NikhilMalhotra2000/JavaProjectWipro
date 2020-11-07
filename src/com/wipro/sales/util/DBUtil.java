@@ -12,7 +12,7 @@ public class DBUtil {
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection("jdbc:oracle:thin@localhost:1521:xe","ishaan","ishaanbajpai77");
+			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","ishaan","ishaanbajpai77");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

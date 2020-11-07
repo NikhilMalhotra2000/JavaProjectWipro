@@ -10,9 +10,8 @@ import java.sql.SQLException;
 public class StockDao {
 	
 	static Connection conn = DBUtil.getDBConnection();
-	static Product p = new Product();
 	
-	public static void insertStock()
+	public static int insertStock(Product p)
 	{
 		try {
 			PreparedStatement ps = conn.prepareStatement("insert into TBL_STOCK values(?,?,?,?,?)");
@@ -23,12 +22,16 @@ public class StockDao {
 			ps.setDouble(4, p.getProductUnitPrice());
 			ps.setInt(5, p.getReorderLevel());
 			
-			ps.executeUpdate();
+			if(ps.executeUpdate() == 1)
+				return 1;
+			else
+				return 0;
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return 0;
 		
 	}
 	
@@ -36,7 +39,7 @@ public class StockDao {
 		
 		PreparedStatement ps;
 		
-		ps = conn.prepareStatement("SELECT * from SEQ_PRODUCT_ID.nextval from dual");
+		ps = conn.prepareStatement("Select SEQ_PRODUCT_ID.nextval from dual");
 		ResultSet rs = ps.executeQuery();
 		
 		if(rs.next())
@@ -76,8 +79,9 @@ public class StockDao {
 		ps.setString(1, productID);
 		ResultSet rs = ps.executeQuery();
 		
+		Product p = new Product();
+		
 		if(rs.next()) {
-			Product p = new Product();
 			p.setProductID(rs.getString(1));
 			p.setProductName(rs.getString(2));
 			p.setQuantityOnHand(rs.getInt(3));
@@ -87,11 +91,17 @@ public class StockDao {
 		return p;
 	}
 	
-	public static void deleteStock(String productID) throws SQLException {
+	public static int deleteStock(String productID) throws SQLException {
 		
 		PreparedStatement ps = conn.prepareStatement("DELETE FROM TBL_STOCK WHERE PRODUCT_ID = ?");
 		ps.setString(1, productID);
-		ps.executeQuery();
+		
+		if(ps.executeUpdate()==1)
+		{
+			return 1;
+		}
+		else
+			return 0;
 	}
 	
 }
